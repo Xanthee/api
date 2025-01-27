@@ -90,7 +90,7 @@ mongoose // MongoDB connected using URI
       try {
           const { startDate } = req.body;  
           console.log('Session userId:', req.session.userId);
-
+          console.log('testID');
           const username = req.session.userId;  // Assuming the username is stored in the session
 
           const newBooking = new Booking({
