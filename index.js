@@ -43,6 +43,14 @@ mongoose // MongoDB connected using URI
         }
       })
      );
+     const path = require('path');
+
+app.use(express.static(path.join(__dirname, 'dist')));  // Serve the build folder from Vite
+
+// Catch-all route to serve the index.html file
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
     app.post('/register', async (req, res) => { // Handling user registration
       const { username, email, password } = req.body;
       try { // Check if the user already exists
@@ -86,6 +94,7 @@ mongoose // MongoDB connected using URI
         res.status(500).json({ message: 'Internal server error.' });
       }
     });
+
     app.post('/booking', async (req, res) => {
       try {
           const { startDate } = req.body;  
